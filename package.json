@@ -1,8 +1,8 @@
 {
   "name": "liri-node-app",
   "version": "1.0.0",
-  "description": "using node spotifyAPI and axios OMBD API and BandsInTown API",
-  "main": "keys.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/robertzuniga/liri-node-app/issues"
   },
-  "homepage": "https://github.com/robertzuniga/liri-node-app#readme"
+  "homepage": "https://github.com/robertzuniga/liri-node-app#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0"
+  }
 }
