@@ -1,20 +1,20 @@
 {
-  "name": "weatherdest",
+  "name": "liri-node-app",
   "version": "1.0.0",
-  "description": "This application will gather weather data and address information for any landmark or location.",
-  "main": "server.js",
+  "description": "using node spotifyAPI and axios OMBD API and BandsInTown API",
+  "main": "keys.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "Weather",
-    "Zip",
-    "Geocoding"
-  ],
-  "author": "Ahmed Haque",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertzuniga/liri-node-app.git"
+  },
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "node-geocoder": "^3.23.0",
-    "weather-js": "^2.0.0"
-  }
+  "bugs": {
+    "url": "https://github.com/robertzuniga/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/robertzuniga/liri-node-app#readme"
 }
