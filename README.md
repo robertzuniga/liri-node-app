@@ -2,11 +2,11 @@
 using node spotifyAPI and axios OMBD API and BandsInTown API
 
 Packages used for LIRI app:
-dotenv
-axios
--OMDB api
--bands_in_town api
-node-spotify-api
+*dotenv
+*axios
+   -OMDB api
+   -bands_in_town api
+*node-spotify-api
 
 
 Here is the movie-this jpg
