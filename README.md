@@ -11,9 +11,11 @@ node-spotify-api
 
 Here is the movie-this jpg
 
-![node liri.js movie-this terminator](./images/movie-this.jpg)
+![node liri.js movie-this terminator](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/movie-this.JPG)
 
-![node liri.js spotify-this-song](./images/spotify-this-song.jpg)
+Here is the spotify-this-song jpg
+
+![node liri.js spotify-this-song](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/spotify-this-song.JPG)
 
 
 
