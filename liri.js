@@ -44,7 +44,7 @@ function musicInfo() {
     spotify.search({
         type: 'track',
         query: songName,
-        limit: "1"
+        limit: "10"
     }, function (error, data) {
         if (error) {
             return console.log('Error occurred: ' + error);
@@ -76,7 +76,6 @@ function musicInfo() {
                 if (artist.type === "artist") {
                     artists.push(artist.name);
                 }
-
             });
             var songName = track.name;
             var previewSpotifyLink = track.preview_url;
@@ -88,9 +87,7 @@ function musicInfo() {
             console.log("<> Album: " + albumName);
             console.log("");
         } else {
-
-            console.log("Song not found");
-
+            console.log("sorry - can't find song - try again");
         }
         ////
     });
