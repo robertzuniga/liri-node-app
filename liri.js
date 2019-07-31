@@ -2,6 +2,7 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var Spotify = require('node-spotify-api')
 var axios = require("axios");
+var moment = require('moment');
 
 var spotify = new Spotify(keys.spotify);
 
@@ -9,14 +10,11 @@ var fs = require("fs");
 
 var myLiriRequest = process.argv[2];
 
-
 switch (myLiriRequest) {
     case "concert-this":
-        console.log("concert-this ok");
-        // http://rest.bankdsintown.com/
+        getBandsInTown();
         break;
     case "spotify-this-song":
-        // console.log("spotify-this-song ok");
         musicInfo();
         break;
     case "movie-this":
@@ -31,6 +29,36 @@ switch (myLiriRequest) {
     default:
         console.log("default case ok");
 }
+////////////////////////////////////////////////////////////////////////////////
+//        getBandsInTown  via "https://rest.bandsintown.com/
+////////////////////////////////////////////////////////////////////////////////
+function getBandsInTown() {
+    // Grab or assemble the artis name and store it in a variable called "artist"
+    var artistName = process.argv.slice(3).join('+');
+    if (!artistName) {
+        artistName = "imagine dragons";
+    }
+    // Then run a request  to the BandsInTown API with the artist specified
+    var queryUrl = "https://rest.bandsintown.com/artists/" + artistName + "/events?app_id=codingbootcamp";
+
+    // console.log("queryUrl = ",queryUrl);
+    // Then create a request with axios to the queryUrl
+    axios.get(queryUrl).then(response => {
+
+        // console.log(JSON.stringify(response.data, null, 4));
+
+        for (var event of response.data) {
+            var formattedEventDate = moment(event.datetime, "YYYY-MM-DDTHH:mm:ss").format("MM/DD/YYYY");
+            console.log(``);
+            console.log(`Lineup: ${event.lineup[0]}`);
+            console.log(`Venue Name: ${event.venue.name}`);
+            console.log(`Venue Location: ${event.venue.city}, ${event.venue.region}`);
+            console.log(`Event Date: ${formattedEventDate}`);
+            console.log(``);
+        }
+    })
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 //        musicInfo   via https://www.npmjs.com/package/node-spotify-api
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,21 +77,21 @@ function musicInfo() {
         if (error) {
             return console.log('Error occurred: ' + error);
         }
- //       console.log("<== JSON data ==>");
- //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
- //      console.log("data.tracks ==> ",data.tracks);
-    //    console.log("data.tracks.items[0] ==> ");
-    //    console.log(data.tracks.items[0]);
-    //    console.log("data.tracks.items[0].artist ==> ");
-    //    console.log(data.tracks.items[0].artists);
-    //    console.log("data.tracks.items[0].name ==> ");
-    //    console.log(data.tracks.items[0].name);
-    //    console.log("data.tracks.items[0].preview_url ==> ");
-    //    console.log(data.tracks.items[0].preview_url);
-    //    console.log("data.tracks.items[0].album.name ==> ");
-    //    console.log(data.tracks.items[0].album.name);
+        //       console.log("<== JSON data ==>");
+        //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
+        //      console.log("data.tracks ==> ",data.tracks);
+        //    console.log("data.tracks.items[0] ==> ");
+        //    console.log(data.tracks.items[0]);
+        //    console.log("data.tracks.items[0].artist ==> ");
+        //    console.log(data.tracks.items[0].artists);
+        //    console.log("data.tracks.items[0].name ==> ");
+        //    console.log(data.tracks.items[0].name);
+        //    console.log("data.tracks.items[0].preview_url ==> ");
+        //    console.log(data.tracks.items[0].preview_url);
+        //    console.log("data.tracks.items[0].album.name ==> ");
+        //    console.log(data.tracks.items[0].album.name);
 
-  //      console.log("data.tracks.items.length ==> ",data.tracks.items.length);
+        //      console.log("data.tracks.items.length ==> ",data.tracks.items.length);
 
         if (data.tracks.items.length > 0) {
             // Uses first result
