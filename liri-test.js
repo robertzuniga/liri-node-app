@@ -13,7 +13,6 @@ var myLiriRequest = process.argv[2];
 switch (myLiriRequest) {
     case "concert-this":
         getBandsInTown();
-        // http://rest.bankdsintown.com/
         break;
     case "spotify-this-song":
         // console.log("spotify-this-song ok");
@@ -57,39 +56,41 @@ function getBandsInTown() {
 ////////////////////////////////////////////////////////////////////////////////
 //        musicInfo   via https://www.npmjs.com/package/node-spotify-api
 ////////////////////////////////////////////////////////////////////////////////
-function musicInfo() {
-    // Grab or assemble the movie name and store it in a variable called "movieName
-    //var movieName = process.argv[3];
-    var songName = process.argv.slice(3).join('+')
-    if (!songName) {
-        songName = "the sign ace of base";
-    }
-    spotify.search({
-        type: 'track',
-        query: songName,
-        limit: "1"
-    }, function (error, data) {
-        if (error) {
-            return console.log('Error occurred: ' + error);
-        }
-​
-        console.log(JSON.stringify(data, null, 4));
-​
- //       console.log("<== JSON data ==>");
- //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
- //      console.log("data.tracks ==> ",data.tracks);
-    //    console.log("data.tracks.items[0] ==> ");
-    //    console.log(data.tracks.items[0]);
-    //    console.log("data.tracks.items[0].artist ==> ");
-    //    console.log(data.tracks.items[0].artists);
-    //    console.log("data.tracks.items[0].name ==> ");
-    //    console.log(data.tracks.items[0].name);
-    //    console.log("data.tracks.items[0].preview_url ==> ");
-    //    console.log(data.tracks.items[0].preview_url);
-    //    console.log("data.tracks.items[0].album.name ==> ");
-    //    console.log(data.tracks.items[0].album.name);
-​
-  //      console.log("data.tracks.items.length ==> ",data.tracks.items.length);
+// function musicInfo() {
+//     // Grab or assemble the movie name and store it in a variable called "movieName
+//     //var movieName = process.argv[3];
+//     var songName = process.argv.slice(3).join('+')
+//     if (!songName) {
+//         songName = "the sign ace of base";
+//     }
+//     spotify.search({
+//         type: 'track',
+//         query: songName,
+//         limit: "1"
+//     }, function (error, data) {
+//         if (error) {
+//             return console.log('Error occurred: ' + error);
+//         }
+// ​
+//         console.log(JSON.stringify(data, null, 4));
+// ​
+//  //       console.log("<== JSON data ==>");
+//  //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
+//  //      console.log("data.tracks ==> ",data.tracks);
+//     //    console.log("data.tracks.items[0] ==> ");
+//     //    console.log(data.tracks.items[0]);
+//     //    console.log("data.tracks.items[0].artist ==> ");
+//     //    console.log(data.tracks.items[0].artists);
+//     //    console.log("data.tracks.items[0].name ==> ");
+//     //    console.log(data.tracks.items[0].name);
+//     //    console.log("data.tracks.items[0].preview_url ==> ");
+//     //    console.log(data.tracks.items[0].preview_url);
+//     //    console.log("data.tracks.items[0].album.name ==> ");
+//     //    console.log(data.tracks.items[0].album.name);
+// ​
+//        console.log("data.tracks.items.length ==> ",data.tracks.items.length);
+
+
 ​
         // if (data.tracks.items.length > 0) {
         //     // Uses first result

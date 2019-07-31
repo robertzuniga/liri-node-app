@@ -19,9 +19,6 @@ switch (myLiriRequest) {
         break;
     case "movie-this":
         movieInfo();
-        // http://www.omdbapi.com/?apikey=[yourkey]&
-        // https://www.omdbapi.com/
-
         break;
     case "do-what-it-says":
         console.log("do-what-it-says ok");
@@ -50,10 +47,10 @@ function getBandsInTown() {
         for (var event of response.data) {
             var formattedEventDate = moment(event.datetime, "YYYY-MM-DDTHH:mm:ss").format("MM/DD/YYYY");
             console.log(``);
-            console.log(`Lineup: ${event.lineup[0]}`);
-            console.log(`Venue Name: ${event.venue.name}`);
-            console.log(`Venue Location: ${event.venue.city}, ${event.venue.region}`);
-            console.log(`Event Date: ${formattedEventDate}`);
+            console.log(`<> Lineup: ${event.lineup[0]}`);
+            console.log(`<> Venue Name: ${event.venue.name}`);
+            console.log(`<> Venue Location: ${event.venue.city}, ${event.venue.region}`);
+            console.log(`<> Event Date: ${formattedEventDate}`);
             console.log(``);
         }
     })
@@ -77,6 +74,9 @@ function musicInfo() {
         if (error) {
             return console.log('Error occurred: ' + error);
         }
+
+        console.log(JSON.stringify(data, null, 4));
+
         //       console.log("<== JSON data ==>");
         //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
         //      console.log("data.tracks ==> ",data.tracks);
@@ -136,7 +136,7 @@ function movieInfo() {
     }
 
     // Then run a request with axios to the OMDB API with the movie specified
-    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy";;
+    var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&tomatoes=true&apikey=trilogy";
 
     //var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&apikey=trilogy";;
 
@@ -152,11 +152,24 @@ function movieInfo() {
             // Then log the Release Year for the movie
             // console.log(response.data.Released);
             //console.log(response);
+            function findCriticsScore(name) {
+                return response.data.Ratings.find(rating => {
+                    return rating.Source === name;
+                });
+            }
+
+            for (var critic of response.data.Ratings) {
+                console.log(critic);
+            }
+
+            var result = findCriticsScore('Rotten Tomators');
+
+            // console.log(`${result.Source} Score: ${result.Value}`);
             console.log("");
             console.log("<> Movie Title: ", response.data.Title);
             console.log("<> Year: ", response.data.Year);
             console.log("<> IMDB Rating: ", response.data.imdbRating);
-            console.log("<> Rotten Tomato Rating: ", response.data.tomatoRating);
+            console.log(`<> : ", response.data.tomatoRating`);
             console.log("<> Country Produced: ", response.data.Country);
             console.log("<> Language: ", response.data.Language);
             console.log("<> Movie Plot: ", response.data.Plot);
