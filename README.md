@@ -21,11 +21,16 @@ Packages used for LIRI app:
      * Date of the Event (use moment to format this as "MM/DD/YYYY")
 
 -----------------------------------------------------------
+Here is the concert-this  example jpg
+
+example-
+
+node liri.js concert-this imagine dragons
 
 ![node liri.js concert-this imagine dragons](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/concert-this.JPG)
 
 -----------------------------------------------------------
-`node liri.js spotify-this-song '<song name here>`
+`node liri.js spotify-this-song <song name here>`
 -----------------------------------------------------------
 
 * This will show the following information about the song in your terminal/bash window
@@ -39,7 +44,7 @@ Packages used for LIRI app:
    * Utilizes the [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package in order to retrieve song information from the Spotify API.
 
 ----------------------------------------------------------
-Here is the spotify-this-song  example jpg
+Here is the spotify-this-song example jpg
 
 example-
 

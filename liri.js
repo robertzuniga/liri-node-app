@@ -89,7 +89,7 @@ function musicInfo() {
     // Grab or assemble the movie name and store it in a variable called "movieName
     //var movieName = process.argv[3];
     var songName = process.argv.slice(3).join('+')
-    console.log('songName: ', songName);
+    // console.log('songName: ', songName);
     if (!songName) {
         songName = "the sign ace of base";
     }
