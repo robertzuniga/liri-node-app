@@ -3,11 +3,8 @@ var keys = require("./keys.js");
 var Spotify = require('node-spotify-api')
 var axios = require("axios");
 var moment = require('moment');
-
 var spotify = new Spotify(keys.spotify);
-
 var fs = require("fs");
-
 var myLiriRequest = process.argv[2];
 
 switch (myLiriRequest) {
@@ -21,11 +18,40 @@ switch (myLiriRequest) {
         movieInfo();
         break;
     case "do-what-it-says":
-        console.log("do-what-it-says ok");
+        doWhatItSays();
         break;
     default:
         console.log("default case ok");
 }
+////////////////////////////////////////////////////////////////////////////////
+//        getBandsInTown  via "https://rest.bandsintown.com/
+////////////////////////////////////////////////////////////////////////////////
+function doWhatItSays() {
+    console.log("do-what-it-says ok");
+    // This block of code will read from the "movies.txt" file.
+// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+// The code will store the contents of the reading inside the variable "data"
+fs.readFile("random.txt", "utf8", function(error, data) {
+
+  // If the code experiences any errors it will log the error to the console.
+  if (error) {
+    return console.log(error);
+  }
+
+  // We will then print the contents of data
+  console.log(data);
+
+  // Then split it by commas (to make it more readable)
+  var dataArr = data.split(",");
+
+  // We will then re-display the content as an array for later use.
+  console.log(dataArr);
+querySpotify(data[1]);
+});
+
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 //        getBandsInTown  via "https://rest.bandsintown.com/
 ////////////////////////////////////////////////////////////////////////////////
@@ -63,62 +89,11 @@ function musicInfo() {
     // Grab or assemble the movie name and store it in a variable called "movieName
     //var movieName = process.argv[3];
     var songName = process.argv.slice(3).join('+')
+    console.log('songName: ', songName);
     if (!songName) {
         songName = "the sign ace of base";
     }
-    spotify.search({
-        type: 'track',
-        query: songName,
-        limit: "10"
-    }, function (error, data) {
-        if (error) {
-            return console.log('Error occurred: ' + error);
-        }
-
-        console.log(JSON.stringify(data, null, 4));
-
-        //       console.log("<== JSON data ==>");
-        //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
-        //      console.log("data.tracks ==> ",data.tracks);
-        //    console.log("data.tracks.items[0] ==> ");
-        //    console.log(data.tracks.items[0]);
-        //    console.log("data.tracks.items[0].artist ==> ");
-        //    console.log(data.tracks.items[0].artists);
-        //    console.log("data.tracks.items[0].name ==> ");
-        //    console.log(data.tracks.items[0].name);
-        //    console.log("data.tracks.items[0].preview_url ==> ");
-        //    console.log(data.tracks.items[0].preview_url);
-        //    console.log("data.tracks.items[0].album.name ==> ");
-        //    console.log(data.tracks.items[0].album.name);
-
-        //      console.log("data.tracks.items.length ==> ",data.tracks.items.length);
-
-        if (data.tracks.items.length > 0) {
-            // Uses first result
-            var track = data.tracks.items[0];
-            var artistsObj = track.artists;
-            var artists = [];
-
-            artistsObj.forEach(function (artist) {
-                //  console.log("artist name ==>",artist.name);
-                if (artist.type === "artist") {
-                    artists.push(artist.name);
-                }
-            });
-            var songName = track.name;
-            var previewSpotifyLink = track.preview_url;
-            var albumName = track.album.name;
-            console.log("");
-            console.log("<> Artist(s): " + artists.join(", "));
-            console.log("<> Song Name: " + songName);
-            console.log("<> Spotify Preview Link: " + previewSpotifyLink);
-            console.log("<> Album: " + albumName);
-            console.log("");
-        } else {
-            console.log("sorry - can't find song - try again");
-        }
-        ////
-    });
+querySpotify(songName);
 
 }
 
@@ -177,3 +152,60 @@ function movieInfo() {
             console.log("");
         });
 }
+
+function querySpotify(mySongName){
+    spotify.search({
+        type: 'track',
+        query: mySongName,
+        limit: "1"
+    }, function (error, data) {
+        if (error) {
+            return console.log('Error occurred: ' + error);
+        }
+
+//** */        console.log(JSON.stringify(data, null, 4));
+
+        //       console.log("<== JSON data ==>");
+        //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
+        //      console.log("data.tracks ==> ",data.tracks);
+        //    console.log("data.tracks.items[0] ==> ");
+        //    console.log(data.tracks.items[0]);
+        //    console.log("data.tracks.items[0].artist ==> ");
+        //    console.log(data.tracks.items[0].artists);
+        //    console.log("data.tracks.items[0].name ==> ");
+        //    console.log(data.tracks.items[0].name);
+        //    console.log("data.tracks.items[0].preview_url ==> ");
+        //    console.log(data.tracks.items[0].preview_url);
+        //    console.log("data.tracks.items[0].album.name ==> ");
+        //    console.log(data.tracks.items[0].album.name);
+
+        //      console.log("data.tracks.items.length ==> ",data.tracks.items.length);
+
+        if (data.tracks.items.length > 0) {
+            // Uses first result
+            var track = data.tracks.items[0];
+            var artistsObj = track.artists;
+            var artists = [];
+
+            artistsObj.forEach(function (artist) {
+                //  console.log("artist name ==>",artist.name);
+                if (artist.type === "artist") {
+                    artists.push(artist.name);
+                }
+            });
+            var songName = track.name;
+            var previewSpotifyLink = track.preview_url;
+            var albumName = track.album.name;
+            console.log("");
+            console.log("<> Artist(s): " + artists.join(", "));
+            console.log("<> Song Name: " + songName);
+            console.log("<> Spotify Preview Link: " + previewSpotifyLink);
+            console.log("<> Album: " + albumName);
+            console.log("");
+        } else {
+            console.log("sorry - can't find song - try again");
+        }
+        ////
+    });
+
+} 
