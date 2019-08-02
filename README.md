@@ -83,8 +83,31 @@ example-
 node liri.js movie-this district 9
 
 
-![node liri.js movie-this terminator](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/movie-this.JPG)
+![node liri.js movie-this district 9](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/movie-this.JPG)
 
+
+----------------------------------------------------------
+ `node liri.js do-what-it-says`
+---------------------------------------------------------
+-
+   * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+
+     * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
+
+     * The text in random.txt 
+
+----------------------------------------------------------
+Here is do-what-it-says example jpg
+
+example-
+
+node liri.js do-what-it-says
+
+
+![node liri.js do-what-it-says](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/do-what-it-says.JPG)
+
+
+----------------------------------------------------------
 
 
 
