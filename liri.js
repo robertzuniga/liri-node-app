@@ -29,25 +29,25 @@ switch (myLiriRequest) {
 function doWhatItSays() {
     console.log("do-what-it-says ok");
     // This block of code will read from the "movies.txt" file.
-// It's important to include the "utf8" parameter or the code will provide stream data (garbage)
-// The code will store the contents of the reading inside the variable "data"
-fs.readFile("random.txt", "utf8", function(error, data) {
+    // It's important to include the "utf8" parameter or the code will provide stream data (garbage)
+    // The code will store the contents of the reading inside the variable "data"
+    fs.readFile("random.txt", "utf8", function (error, data) {
 
-  // If the code experiences any errors it will log the error to the console.
-  if (error) {
-    return console.log(error);
-  }
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+            return console.log(error);
+        }
 
-  // We will then print the contents of data
-  console.log(data);
+        // We will then print the contents of data
+        console.log(data);
 
-  // Then split it by commas (to make it more readable)
-  var dataArr = data.split(",");
+        // Then split it by commas (to make it more readable)
+        var dataArr = data.split(",");
 
-  // We will then re-display the content as an array for later use.
-  console.log(dataArr);
-querySpotify(data[1]);
-});
+        // We will then re-display the content as an array for later use.
+        console.log(dataArr);
+        querySpotify(data[1]);
+    });
 
 }
 
@@ -93,7 +93,7 @@ function musicInfo() {
     if (!songName) {
         songName = "the sign ace of base";
     }
-querySpotify(songName);
+    querySpotify(songName);
 
 }
 
@@ -127,6 +127,17 @@ function movieInfo() {
             // Then log the Release Year for the movie
             // console.log(response.data.Released);
             //console.log(response);
+
+
+            var result = findCriticsScore('Rotten Tomators');
+
+            // console.log(`${result.Source} Score: ${result.Value}`);
+            console.log("");
+            console.log("<> Movie Title: ", response.data.Title);
+            console.log("<> Year: ", response.data.Year);
+            console.log("<> Critic Rating(s): ");
+            // console.log("<> IMDB Rating: ", response.data.imdbRating);
+            // console.log(`<> : ", response.data.tomatoRating`);
             function findCriticsScore(name) {
                 return response.data.Ratings.find(rating => {
                     return rating.Source === name;
@@ -137,14 +148,6 @@ function movieInfo() {
                 console.log(critic);
             }
 
-            var result = findCriticsScore('Rotten Tomators');
-
-            // console.log(`${result.Source} Score: ${result.Value}`);
-            console.log("");
-            console.log("<> Movie Title: ", response.data.Title);
-            console.log("<> Year: ", response.data.Year);
-            console.log("<> IMDB Rating: ", response.data.imdbRating);
-            console.log(`<> : ", response.data.tomatoRating`);
             console.log("<> Country Produced: ", response.data.Country);
             console.log("<> Language: ", response.data.Language);
             console.log("<> Movie Plot: ", response.data.Plot);
@@ -153,7 +156,7 @@ function movieInfo() {
         });
 }
 
-function querySpotify(mySongName){
+function querySpotify(mySongName) {
     spotify.search({
         type: 'track',
         query: mySongName,
@@ -163,7 +166,7 @@ function querySpotify(mySongName){
             return console.log('Error occurred: ' + error);
         }
 
-//** */        console.log(JSON.stringify(data, null, 4));
+        //** */        console.log(JSON.stringify(data, null, 4));
 
         //       console.log("<== JSON data ==>");
         //       console.log(JSON.stringify(data.tracks.items[0], null, 2))
@@ -208,4 +211,4 @@ function querySpotify(mySongName){
         ////
     });
 
-} 
+}
