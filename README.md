@@ -1,12 +1,12 @@
 # liri-node-app
-using node spotifyAPI and axios OMBD API and BandsInTown API
-
 Packages used for LIRI app:
 *dotenv
 *axios
    -OMDB api
    -bands_in_town api
+   -fs
 *node-spotify-api
+*moment
 
 -----------------------------------------------------------
 `node liri.js concert-this <artist/band name here>`
@@ -22,7 +22,7 @@ Packages used for LIRI app:
 
 -----------------------------------------------------------
 
-
+![node liri.js concert-this imagine dragons](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/concert-this.JPG)
 
 -----------------------------------------------------------
 `node liri.js spotify-this-song '<song name here>`
@@ -39,7 +39,14 @@ Packages used for LIRI app:
    * Utilizes the [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package in order to retrieve song information from the Spotify API.
 
 ----------------------------------------------------------
+Here is the spotify-this-song  example jpg
 
+example-
+
+node liri.js spotify-this-song immigrant
+
+
+![node liri.js spotify-this-song](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/spotify-this-song.JPG)
 
 
 
@@ -63,15 +70,8 @@ Packages used for LIRI app:
 
 the `axios` package to retrieve data from the OMDB API.
 
-
-
-
-
-
-
-
-
-Here is the movie-this jpg
+-----------------------------------------------------------
+Here is the movie-this example jpg
 
 example-
 
@@ -80,14 +80,7 @@ node liri.js movie-this terminator
 
 ![node liri.js movie-this terminator](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/movie-this.JPG)
 
-Here is the spotify-this-song jpg
 
-example-
-
-node liri.js spotify-this-song immigrant
-
-
-![node liri.js spotify-this-song](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/spotify-this-song.JPG)
 
 
 
