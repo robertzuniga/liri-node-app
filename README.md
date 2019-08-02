@@ -20,7 +20,7 @@ Packages used for LIRI app:
 
      * Date of the Event (use moment to format this as "MM/DD/YYYY")
 
------------------------------------------------------------
+
 Here is the concert-this  example jpg
 
 example-
@@ -43,7 +43,7 @@ node liri.js concert-this imagine dragons
    * If no song is provided then the program will default to "The Sign" by Ace of Base.
    * Utilizes the [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package in order to retrieve song information from the Spotify API.
 
-----------------------------------------------------------
+
 Here is the spotify-this-song example jpg
 
 example-
@@ -75,7 +75,7 @@ node liri.js spotify-this-song immigrant
 
 the `axios` package to retrieve data from the OMDB API.
 
------------------------------------------------------------
+
 Here is the movie-this example jpg
 
 example-
@@ -96,7 +96,7 @@ node liri.js movie-this district 9
 
      * The text in random.txt 
 
-----------------------------------------------------------
+
 Here is do-what-it-says example jpg
 
 example-
