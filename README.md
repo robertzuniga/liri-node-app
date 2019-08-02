@@ -80,7 +80,7 @@ Here is the movie-this example jpg
 
 example-
 
-node liri.js movie-this terminator
+node liri.js movie-this district 9
 
 
 ![node liri.js movie-this terminator](https://raw.githubusercontent.com/robertzuniga/liri-node-app/master/images/movie-this.JPG)
